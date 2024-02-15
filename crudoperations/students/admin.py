@@ -6,4 +6,4 @@ from .models import Student
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display=["name","email","password"]
+    list_display=["name","email","password",'is_deleted']

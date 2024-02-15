@@ -1,43 +1,47 @@
 {% extends 'base.html' %}
 
-{% block title %}student{% endblock title %}
+{% block title %}
+    Update
+{% endblock title %}
 
 {% block content %}
+    
+<h2 class="text-center alert alert-success">Student Update </h2>
 
 <div class="container">
     <div class="row">
         <div class="col-4 ">
-            <h2 class="text-center alert alert-info">Add New Student</h2>
+            <h2 class="text-center alert alert-info">Update Student</h2>
             <form action="" method="POST">
                 {% csrf_token %}
                 {{form.as_p}}
-                <input type="submit" value="Add">
+                <input type="submit" value="Update">
+                <a class="btn btn-info m-3" href="/">Back to Student Page</a>
             </form>
         </div>
 
         <div class="col-8">
 
             <h2 class="text-center alert alert-success">Show Student Information</h2>
-            {% if form %}
+            {% if stu %}
             <table class="table" >
                 <thead>
                     <tr>
                     <td>Sr.No.</td>
                     <td>Name</td>
                     <td>Email</td>
-                    <td>Action</td>
+                   
                     </tr>
                 </thead>
                 <tbody > 
-                    {% for data in mydata %}
+                    
                     <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{data.name}}</td>
-                        <td>{{data.email}}</td> 
-                        <td><a class="btn btn-sm btn-warning" href={% url 'editdata' id=data.id %}>Edit</a>
-                        <a class=" btn btn-sm btn-danger" href={% url 'deletedata' id=data.id %}>Delete</a></td> 
+                        <td>{{stu.id}}</td>
+                        <td>{{stu.name}}</td>
+                        <td>{{stu.email}}</td> 
+                        
                     </tr> 
-                    {% endfor %} 
+                   
                 </tbody>
                 </table>
             {% else %}
@@ -48,6 +52,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock content %}
