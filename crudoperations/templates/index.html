@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}student{% endblock title %}
+
+{% block content %}
+.
+<div class="container">
+    <div class="row">
+        <div class="col-4 alert alert-info">
+            <h2>Add New Student</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Add">
+            </form>
+        </div>
+
+        <div class="col-8 alert alert-success">
+            <table class="table" >
+            <thead>
+                <tr>
+                <td>Sr.No.</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Action</td>
+                </tr>
+            </thead>
+            <tbody > 
+                {% for data in mydata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.email}}</td> 
+                    <td><a href="#">Edit</a>
+                    <td><a href="#">Delete</a></td> 
+                </tr> 
+                {% endfor %} 
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
