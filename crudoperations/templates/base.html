@@ -40,12 +40,16 @@
             </li>
  
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" method="POST" action="/search/">
+            <h5>Its working</h5>
+            {% csrf_token %}
             <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              value="{{value}}"
+              name="searchquery"
             />
             <button class="btn btn-outline-success" type="submit">
               Search

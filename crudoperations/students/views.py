@@ -1,4 +1,5 @@
 from django.shortcuts import render ,redirect
+from django.db.models import Q
 
 from .forms import RegistrationForm
 from .models import Student
@@ -23,7 +24,7 @@ def index(request):
     else:
         form=RegistrationForm()
         mydata=Student.objects.filter(is_deleted=False)
-
+    print("i m here")
     data={'form':form,'mydata':mydata}
     return render(request,"index.html",data)
 
@@ -38,12 +39,28 @@ def edit_data(request,id):
     data={}
     if request.method=='POST':
         stu=Student.objects.get(id=id)
+        print(stu)
         form=RegistrationForm(request.POST,instance=stu)
         if form.is_valid():
             form.save()
 
     else:
         stu=Student.objects.get(id=id)
+        print(stu)
         form=RegistrationForm(instance=stu)
     data={'form':form,'stu':stu}
     return render(request,'update.html',data)
+
+def search_data(request):
+    data={}
+    if request.method=='POST':
+        query=request.POST.get('searchquery') # "searchquery" come from name of the serch input
+        print(query)
+        mydata=Student.objects.filter(Q(name__icontains=query)|Q(email__icontains=query),is_deleted=False)
+        form=RegistrationForm()   
+    else:
+        mydata=Student.objects.all()
+        form=RegistrationForm()
+
+    data={'form':form,'mydata':mydata,'value':query}
+    return render(request,'index.html',data)

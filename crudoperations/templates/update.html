@@ -1,56 +1,44 @@
-{% extends 'base.html' %}
-
-{% block title %}
-    Update
-{% endblock title %}
+{% extends 'base.html' %} {% block title %} Update {% endblock title %}
 
 {% block content %}
-    
-<h2 class="text-center alert alert-success">Student Update </h2>
+
+<h2 class="text-center alert alert-success">Student Update</h2>
 
 <div class="container">
-    <div class="row">
-        <div class="col-4 ">
-            <h2 class="text-center alert alert-info">Update Student</h2>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{form.as_p}}
-                <input type="submit" value="Update">
-                <a class="btn btn-info m-3" href="/">Back to Student Page</a>
-            </form>
-        </div>
-
-        <div class="col-8">
-
-            <h2 class="text-center alert alert-success">Show Student Information</h2>
-            {% if stu %}
-            <table class="table" >
-                <thead>
-                    <tr>
-                    <td>Sr.No.</td>
-                    <td>Name</td>
-                    <td>Email</td>
-                   
-                    </tr>
-                </thead>
-                <tbody > 
-                    
-                    <tr>
-                        <td>{{stu.id}}</td>
-                        <td>{{stu.name}}</td>
-                        <td>{{stu.email}}</td> 
-                        
-                    </tr> 
-                   
-                </tbody>
-                </table>
-            {% else %}
-            <h4 class="text-center alert alert-warning">No Record Found</h4>
-                
-            {% endif %}
-            
-        </div>
+  <div class="row">
+    <div class="col-4">
+      <h2 class="text-center alert alert-info">Update Student</h2>
+      <form action="" method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <input type="submit" value="Update" />
+        <a class="btn btn-info m-3" href="/">Back to Student Page</a>
+      </form>
     </div>
+
+    <div class="col-8">
+      <h2 class="text-center alert alert-success">Show Student Information</h2>
+      {% if stu %}
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Sr.No.</td>
+            <td>Name</td>
+            <td>Email</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{stu.id}}</td>
+            <td>{{stu.name}}</td>
+            <td>{{stu.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+      {% else %}
+      <h4 class="text-center alert alert-warning">No Record Found</h4>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 {% endblock content %}
