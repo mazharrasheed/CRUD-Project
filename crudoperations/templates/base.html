@@ -16,7 +16,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Navbar</a>
+        <a class="navbar-brand" href="/">School</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -41,12 +41,12 @@
  
           </ul>
           <form class="d-flex" method="POST" action="/search/">
-            <h5>Its working</h5>
+           
             {% csrf_token %}
             <input
               class="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search use me"
               aria-label="Search"
               value="{{value}}"
               name="searchquery"
