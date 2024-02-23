@@ -24,7 +24,6 @@ def index(request):
     else:
         form=RegistrationForm()
         mydata=Student.objects.filter(is_deleted=False)
-    print("i m here")
     data={'form':form,'mydata':mydata}
     return render(request,"index.html",data)
 
@@ -36,17 +35,15 @@ def delete_data(request,id):
     return redirect('home')
 
 def edit_data(request,id):
+    
     data={}
     if request.method=='POST':
         stu=Student.objects.get(id=id)
-        print(stu)
         form=RegistrationForm(request.POST,instance=stu)
         if form.is_valid():
             form.save()
-
     else:
         stu=Student.objects.get(id=id)
-        print(stu)
         form=RegistrationForm(instance=stu)
     data={'form':form,'stu':stu}
     return render(request,'update.html',data)
@@ -55,12 +52,10 @@ def search_data(request):
     data={}
     if request.method=='POST':
         query=request.POST.get('searchquery') # "searchquery" come from name of the serch input
-        print(query)
         mydata=Student.objects.filter(Q(name__icontains=query)|Q(email__icontains=query),is_deleted=False)
         form=RegistrationForm()   
     else:
         mydata=Student.objects.all()
         form=RegistrationForm()
-
     data={'form':form,'mydata':mydata,'value':query}
     return render(request,'index.html',data)
